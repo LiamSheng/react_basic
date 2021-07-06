@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function Components</title>
+  </head>
+
+  <body>
+    <!-- container -->
+    <div id="test"></div>
+    <!-- import react.development.js 注意顺序-->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- import react-dom.development.js -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- import babel.min.js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+      //1. 创建类式组件
+      class MyComponent extends React.Component {
+        // 构造器可以完全省略, 不写构造器一点问题都没有.
+        // render() 方法放在 MyComponent 的原型对象上.
+        render() {
+          return <h2> 用类定义的组件, 适用于复杂组件 </h2>;
+        }
+      }
+      // 渲染组件到页面
+      // React 发现 <MyComponent /> 是使用类定义出来的, 通过该实例调用原型上的
+      // render 方法, 之后返回虚拟 DOM 转化成真实 DOM.
+      ReactDOM.render(<MyComponent />, document.getElementById("test"));
+    </script>
+  </body>
+</html>
