@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Hello React!</title>
+        <title>函数式组件</title>
     </head>
     <body>
         <!-- 准备好一个容器 -->
@@ -18,11 +18,12 @@
         <script type="text/javascript" src="../js/babel.min.js"></script>
 
         <script type="text/babel">
-            /* 此处一定写 babel*/
-            // 1. 创建虚拟 DOM
-            const vDOM = <h1>Hello, React!</h1>; /*不要写引号*/
-            // 2. 渲染虚拟 DOM 到页面
-            ReactDOM.render(vDOM, document.getElementById("test"));
+            // 创建函数式组件.
+            function Demo() {
+                return <h2>我是用函数定义的组件(适用于【简单组件】的定义)</h2>;
+            }
+            // 渲染组件到页面
+            ReactDOM.render(<Demo />, document.getElementById("test"));
         </script>
     </body>
 </html>

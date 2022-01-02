@@ -19,8 +19,14 @@
 
         <script type="text/babel">
             /* 此处一定写 babel*/
+            const myId = "LiNzI";
+            const myData = "mYdAtA";
             // 1. 创建虚拟 DOM
-            const vDOM = <h1>Hello, React!</h1>; /*不要写引号*/
+            const vDOM = (
+                <h1 className="title" id={myId.toLocaleLowerCase()}>
+                    <span style={{ color: "green", fontSize: "29px" }}>{myData.toLocaleLowerCase()}</span>
+                </h1>
+            );
             // 2. 渲染虚拟 DOM 到页面
             ReactDOM.render(vDOM, document.getElementById("test"));
         </script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>类的基本知识</title>
+    </head>
+    <body>
+        <script>
+            // 创建一个 Person 类
+            class Person {
+                // 构造器方法
+                constructor(name, age) {
+                    // this 是谁? - 类的实例对象.
+                    this.name = name;
+                    this.age = age;
+                }
+                // 非构造器的一般方法,speak 方法放在类的原型对象上. 供实例使用.
+                // 通过 Person 实例调用 speak 方法时, speak 中的 this 就是实例.
+                speak() {
+                    console.log(`我叫${this.name},年龄是${this.age}`);
+                }
+                mood = "happy"; // 追加属性到实例 person.
+                static mood1 = "sad"; // 追加属性到 Person 类.
+            }
+
+            // 创建一个 Student 类, 继承于 Person.
+            class Student extends Person {
+                constructor(name, age, grade) {
+                    super(name, age);
+                    this.grade = grade;
+                }
+                speak() {
+                    console.log(`我叫${this.name},年龄是${this.age},${this.grade}年级了`);
+                }
+
+                // 方法放在了原型对象上, 供实例使用
+                // 通过谁的实例调用的这个方法, this 就指向谁的实例.
+                study() {
+                    console.log("我爱学习");
+                }
+            }
+
+            const student = new Student("Linzi", 21, 3);
+            student.speak();
+            student.study();
+
+            // 创建一个 Person 的实例对象
+            const p1 = new Person("sheng", 18);
+            // const p2 = new Person("linzi", 19);
+            console.log(p1);
+            // console.log(p2);
+            // p1.speak();
+            // p2.speak();
+        </script>
+    </body>
+</html>

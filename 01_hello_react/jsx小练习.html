@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Hello React!</title>
+        <title>JSX 小练习</title>
     </head>
     <body>
         <!-- 准备好一个容器 -->
@@ -19,8 +19,19 @@
 
         <script type="text/babel">
             /* 此处一定写 babel*/
+            // 模拟一些数据
+            const data = ["Angular", "React", "Vue"];
             // 1. 创建虚拟 DOM
-            const vDOM = <h1>Hello, React!</h1>; /*不要写引号*/
+            const vDOM = (
+                <div>
+                    <h1>前段js框架</h1>
+                    <ul>
+                        {data.map((item, index) => {
+                            return <li key={index}>{item}</li>;
+                        })}
+                    </ul>
+                </div>
+            );
             // 2. 渲染虚拟 DOM 到页面
             ReactDOM.render(vDOM, document.getElementById("test"));
         </script>

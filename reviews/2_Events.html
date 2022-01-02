@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>原生事件绑定</title>
+    </head>
+    <body>
+        <button id="btn1">button_1</button>
+        <button id="btn2">button_2</button>
+        <button id="btn3" onclick="demo()">button_3</button>
+
+        <script type="text/javascript">
+            const btn1 = document.getElementById("btn1");
+            btn1.addEventListener("click", () => {
+                alert("clicked button_1");
+            });
+
+            const btn2 = document.getElementById("btn2");
+            btn2.onclick = () => {
+                alert("clicked button_2");
+            };
+
+            // React 更加推荐的事件绑定方式.
+            function demo() {
+                alert("clicked button_2");
+            }
+        </script>
+    </body>
+</html>
