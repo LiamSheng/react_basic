@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>函数的柯里化实现</title>
+    </head>
+    <body>
+        <!-- 准备好一个容器 -->
+        <div id="test"></div>
+
+        <!-- 引入 react 核心库 -->
+        <script type="text/javascript" src="../js/react.development.js"></script>
+        <!-- 引入 react-dom, 用于支持 react 操作 DOM -->
+        <script type="text/javascript" src="../js/react-dom.development.js"></script>
+        <!-- 引入 babel, 用于将 jsx 转为 js -->
+        <script type="text/javascript" src="../js/babel.min.js"></script>
+
+        <script type="text/babel">
+            // 创建类式组件. 构造器不是必须的.
+            class Login extends React.Component {
+                // 初始化状态
+                state = { uername: "", passwrod: "" };
+
+                handleSubmit = (event) => {
+                    event.preventDefault();
+                    const { username, password } = this.state;
+                    alert(`username:${username}, password:${password}`);
+                };
+
+                // 保存表单数据到状态中
+                /*
+                    高阶函数:
+                        1.若A函数接收的参数是一个函数 ||
+                        2.若A函数调用的返回值依旧是一个函数.
+                        3.常见的有 promise, setTimeout, arr常见方法
+
+                    函数的柯里化: 通过函数调用继续返回函数,实现多次接收参数最后统一处理的函数编码形式.
+                */
+                saveFormData = (dataType) => {
+                    return (event) => {
+                        this.setState({ [dataType]: event.target.value });
+                    };
+                };
+
+                render() {
+                    return (
+                        <form action="https://www.google.ca/" onSubmit={this.handleSubmit}>
+                            username:
+                            <input onChange={this.saveFormData("username")} type="text" name="username" />
+                            password:
+                            <input onChange={this.saveFormData("password")} type="password" name="password" />
+                            <button>login</button>
+                        </form>
+                    );
+                }
+            }
+            // 渲染组件
+            ReactDOM.render(<Login />, document.getElementById("test"));
+        </script>
+    </body>
+</html>

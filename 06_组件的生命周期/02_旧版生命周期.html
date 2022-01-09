@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>旧版生命周期</title>
+    </head>
+    <body>
+        <!-- 准备好一个容器 -->
+        <div id="test"></div>
+
+        <!-- 引入 react 核心库 -->
+        <script type="text/javascript" src="../js/react.development.js"></script>
+        <!-- 引入 react-dom, 用于支持 react 操作 DOM -->
+        <script type="text/javascript" src="../js/react-dom.development.js"></script>
+        <!-- 引入 babel, 用于将 jsx 转为 js -->
+        <script type="text/javascript" src="../js/babel.min.js"></script>
+
+        <script type="text/babel">
+            // 创建类式组件. 构造器不是必须的.
+            class Count extends React.Component {
+                // 生命周期🪝 - constructor 构造器
+                constructor(props) {
+                    super(props);
+                    console.log("Count生命周期🪝 - constructor");
+                    // 初始化状态
+                    this.state = { count: 0 };
+                }
+
+                // 生命周期🪝 - 组件将要挂载
+                componentWillMount() {
+                    console.log("Count生命周期🪝 - 组件将要挂载");
+                }
+
+                // 生命周期🪝 - 组件已经挂载
+                componentDidMount() {
+                    console.log("Count生命周期🪝 - 组件已经挂载");
+                }
+
+                // 生命周期🪝 - 组件将要卸载
+                componentWillUnmount() {
+                    console.log("Count生命周期🪝 - 组件将要卸载");
+                }
+
+                // 生命周期🪝 - 组件应该更新
+                // 必须返回一个布尔值, 默认是真
+                shouldComponentUpdate() {
+                    console.log("Count生命周期🪝 - 组件应该更新");
+                    return false;
+                }
+
+                // 生命周期🪝 - 组件将要更新
+                componentWillUpdate() {
+                    console.log("Count生命周期🪝 - 组件将要更新");
+                }
+
+                // 生命周期🪝 - 组件将要更新
+                componentDidUpdate() {
+                    console.log("Count生命周期🪝 - 组件已经更新");
+                }
+
+                // 生命周期🪝 - 组件强制更新
+                force = () => {
+                    this.forceUpdate();
+                    console.log("Count生命周期🪝 - 组件强制更新");
+                };
+
+                // +1 功能实现
+                add = () => {
+                    let { count } = this.state;
+                    this.setState({ count: count + 1 });
+                };
+
+                // 卸载组件
+                unMountComponent = () => {
+                    ReactDOM.unmountComponentAtNode(document.getElementById("test"));
+                };
+
+                // 生命周期🪝 - 组件挂载
+                render() {
+                    const { count } = this.state;
+                    console.log("Count生命周期🪝 - 组件挂载");
+                    return (
+                        <div>
+                            <h2>当前求和结果:{count}</h2>
+                            <button onClick={this.add}>点我+1</button>
+                            <button onClick={this.force}>点我强制更新</button>
+                            <button onClick={this.unMountComponent}>点我卸载组件</button>
+                        </div>
+                    );
+                }
+            }
+            ReactDOM.render(<Count />, document.getElementById("test"));
+            
+        </script>
+    </body>
+</html>
